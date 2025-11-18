@@ -1,6 +1,5 @@
 import { useState } from 'react'
-import { Calendar, MapPin, Clock, DollarSign } from 'lucide-react'
-
+import { Calendar, MapPin, Clock } from 'lucide-react'
 const Itinerary = () => {
   const [formData, setFormData] = useState({
     destination: '',
