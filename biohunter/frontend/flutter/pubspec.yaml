@@ -1,0 +1,85 @@
+name: biohunter
+description: Quiz Microscopique Viral - Jeu éducatif de microbiologie
+version: 1.0.0+1
+publish_to: 'none'
+
+environment:
+  sdk: '>=3.0.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+
+  # Firebase
+  firebase_core: ^2.24.0
+  firebase_auth: ^4.15.0
+  cloud_firestore: ^4.13.0
+  firebase_analytics: ^10.7.0
+  firebase_storage: ^11.5.0
+
+  # State Management
+  provider: ^6.1.1
+  get: ^4.6.6
+
+  # UI Components
+  flutter_svg: ^2.0.9
+  cached_network_image: ^3.3.0
+  shimmer: ^3.0.0
+  lottie: ^2.7.0
+  confetti: ^0.7.0
+
+  # Animations
+  animations: ^2.0.8
+  rive: ^0.12.4
+
+  # Audio
+  audioplayers: ^5.2.1
+  just_audio: ^0.9.36
+
+  # Utilities
+  shared_preferences: ^2.2.2
+  connectivity_plus: ^5.0.2
+  http: ^1.1.2
+  dio: ^5.4.0
+
+  # Social Sharing
+  share_plus: ^7.2.1
+  flutter_share: ^2.0.0
+
+  # Localization
+  intl: ^0.18.1
+
+  # Game Engine (optional)
+  flame: ^1.13.1
+  flame_audio: ^2.1.4
+
+  # Icons
+  cupertino_icons: ^1.0.6
+  font_awesome_flutter: ^10.6.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^3.0.1
+  mockito: ^5.4.4
+  integration_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/images/
+    - assets/images/microscope/
+    - assets/sounds/
+    - assets/animations/
+    - assets/icons/
+
+  fonts:
+    - family: BioHunter
+      fonts:
+        - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Bold.ttf
+          weight: 700
+        - asset: assets/fonts/Poppins-SemiBold.ttf
+          weight: 600

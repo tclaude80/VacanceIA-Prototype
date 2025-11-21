@@ -1,0 +1,68 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Users collection
+    match /Users/{userId} {
+      allow read: if isAuthenticated();
+      allow write: if isOwner(userId);
+
+      // Permettre la création du profil lors de l'inscription
+      allow create: if isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Questions collection - lecture seule pour les utilisateurs
+    match /Questions/{questionId} {
+      allow read: if isAuthenticated();
+      allow write: if false; // Géré par admin
+    }
+
+    // Game Sessions - l'utilisateur peut créer ses propres sessions
+    match /GameSessions/{sessionId} {
+      allow read: if isAuthenticated() && resource.data.userId == request.auth.uid;
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if false; // Immutable après création
+    }
+
+    // Leaderboards - lecture publique
+    match /Leaderboards/{type}/rankings/{userId} {
+      allow read: if true;
+      allow write: if false; // Géré par Cloud Functions
+    }
+
+    // Achievements - lecture seule
+    match /Achievements/{achievementId} {
+      allow read: if isAuthenticated();
+      allow write: if false; // Géré par Cloud Functions
+    }
+
+    // TikTok Challenges - lecture publique, écriture authentifiée
+    match /TikTokChallenges/{challengeId} {
+      allow read: if true;
+      allow create: if isAuthenticated();
+      allow update, delete: if isOwner(resource.data.userId);
+    }
+
+    // Daily Microscope - lecture publique
+    match /DailyMicroscope/{date} {
+      allow read: if true;
+      allow write: if false; // Géré par Cloud Functions
+    }
+
+    // Daily Answers - utilisateur peut voir et créer ses réponses
+    match /DailyAnswers/{answerId} {
+      allow read: if isAuthenticated() && resource.data.userId == request.auth.uid;
+      allow create: if isAuthenticated() && request.resource.data.userId == request.auth.uid;
+      allow update, delete: if false; // Immutable
+    }
+  }
+}

@@ -1,0 +1,45 @@
+# Flutter/Dart
+frontend/flutter/.dart_tool/
+frontend/flutter/.packages
+frontend/flutter/.pub/
+frontend/flutter/build/
+frontend/flutter/.flutter-plugins
+frontend/flutter/.flutter-plugins-dependencies
+
+# Firebase
+backend/firebase/.firebase/
+backend/firebase/functions/node_modules/
+backend/firebase/functions/lib/
+backend/firebase/public/
+
+# Logs
+*.log
+npm-debug.log*
+
+# Environment variables
+.env
+.env.local
+*.env
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Secrets
+firebase-debug.log
+firestore-debug.log
+ui-debug.log
+
+# Build outputs
+*.apk
+*.aab
+*.ipa
+*.dSYM.zip
+*.dSYM
